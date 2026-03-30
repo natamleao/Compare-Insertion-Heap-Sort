@@ -162,7 +162,6 @@ make run
 ## Limpeza do projeto
 
 ```bash
-make clean
 make cleanapp
 ```
 
