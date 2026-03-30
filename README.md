@@ -19,7 +19,7 @@ O objetivo foi sair do “funciona” e ir para o “quanto tempo isso leva na p
 
 ## Funcionalidades
 
-* Criação de Heap a partir de array
+* Criação de Heap a partir de _array_
 * Operações de Heap: inserção, extração do máximo, heapify
 * HeapSort in-place
 * InsertionSort para comparação
@@ -41,9 +41,9 @@ esq(i) = 2*i + 1
 dir(i) = 2*i + 2
 ```
 
-### Array para InsertionSort
+### _Array_ para InsertionSort
 
-Um array simples, alocado dinamicamente, usado para ordenar com InsertionSort.
+Um _array_ simples, alocado dinamicamente, usado para ordenar com InsertionSort.
 
 ---
 
@@ -55,7 +55,7 @@ Um array simples, alocado dinamicamente, usado para ordenar com InsertionSort.
 void heapSort(Heap *heap);
 ```
 
-1. Constrói a heap a partir do array
+1. Constrói a heap a partir do _array_
 2. Troca a raiz com o último elemento
 3. Reduz a parte ativa da heap
 4. Reorganiza com HeapifyDown
@@ -71,7 +71,7 @@ Complexidade:
 void insertionSort(Array *array);
 ```
 
-1. Percorre o array a partir do segundo elemento
+1. Percorre o _array_ a partir do segundo elemento
 2. Insere o elemento na posição correta dentro da parte já ordenada
 
 Complexidade:
