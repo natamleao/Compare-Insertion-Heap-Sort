@@ -36,7 +36,7 @@ O objetivo foi sair do “funciona” e ir para o “quanto tempo isso leva na p
 A Heap é representada como um **array**, mantendo relações clássicas:
 
 ```
-pai(i) = (i - 1) / 2
+pai(i) = $\frac{i - 1}{2}$
 esq(i) = 2*i + 1
 dir(i) = 2*i + 2
 ```
