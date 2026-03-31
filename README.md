@@ -1,4 +1,4 @@
-# Comparação: HeapSort vs InsertionSort em C com Medição de Tempo
+# Comparação: HeapSort vs Insertion Sort em C com Medição de Tempo
 
 ![Language](https://img.shields.io/badge/language-C-blue)
 ![Standard](https://img.shields.io/badge/standard-C11-orange)
@@ -22,7 +22,7 @@ O objetivo foi sair do “funciona” e ir para o “quanto tempo isso leva na p
 * Criação de Heap a partir de _array_
 * Operações de Heap: inserção, extração do máximo, heapify
 * HeapSort in-place
-* InsertionSort para comparação
+* Insertion Sort para comparação
 * Medição de tempo de execução com precisão
 * Teste com grandes volumes de dados
 * Liberação de memória
@@ -41,9 +41,9 @@ esq(i) = 2*i + 1
 dir(i) = 2*i + 2
 ```
 
-### _Array_ para InsertionSort
+### _Array_ para Insertion Sort
 
-Um _array_ simples, alocado dinamicamente, usado para ordenar com InsertionSort.
+Um _array_ simples, alocado dinamicamente, usado para ordenar com Insertion Sort.
 
 ---
 
@@ -65,7 +65,7 @@ Complexidade:
 * Tempo: `O(n log n)`
 * Espaço: `O(1)`
 
-### InsertionSort
+### Insertion Sort
 
 ```c
 void insertionSort(Array *array);
