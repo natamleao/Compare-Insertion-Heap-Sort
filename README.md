@@ -11,7 +11,7 @@
 
 ## Visão geral
 
-Neste projeto, implementei **HeapSort** e **InsertionSort** em C e comparei o desempenho dos dois algoritmos em **mesmo conjunto de dados**.
+Neste projeto, implementei **HeapSort** e **Insertion Sort** em C e comparei o desempenho dos dois algoritmos em **mesmo conjunto de dados**.
 
 O objetivo foi sair do “funciona” e ir para o “quanto tempo isso leva na prática”, medindo com `clock_gettime` e observando o comportamento real para grandes volumes de dados.
 
