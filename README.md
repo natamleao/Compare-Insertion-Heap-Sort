@@ -1,4 +1,4 @@
-# Comparação: HeapSort vs Insertion Sort em C com Medição de Tempo
+# Comparação: *Heap Sort* vs *Insertion Sort* em C com Medição de Tempo
 
 ![Language](https://img.shields.io/badge/language-C-blue)
 ![Standard](https://img.shields.io/badge/standard-C11-orange)
@@ -11,79 +11,65 @@
 
 ## Visão geral
 
-Neste projeto, implementei **HeapSort** e **Insertion Sort** em C e comparei o desempenho dos dois algoritmos em **mesmo conjunto de dados**.
+Neste projeto, comparei os algoritmos ** *Heap Sort* ** e ** *Insertion Sort* ** utilizando uma **biblioteca estática única** que contém ambas as implementações.
 
-O objetivo foi sair do “funciona” e ir para o “quanto tempo isso leva na prática”, medindo com `clock_gettime` e observando o comportamento real para grandes volumes de dados.
+A ideia foi direta:
 
----
+> aplicar os dois algoritmos sobre os mesmos dados e medir o tempo real de execução
 
-## Funcionalidades
-
-* Criação de Heap a partir de _array_
-* Operações de Heap: inserção, extração do máximo, heapify
-* HeapSort in-place
-* Insertion Sort para comparação
-* Medição de tempo de execução com precisão
-* Teste com grandes volumes de dados
-* Liberação de memória
+Aqui o foco não é implementar — é **comparar comportamento na prática**.
 
 ---
 
-## Estrutura de dados
+## O que foi feito
 
-### Heap
+* Uso de uma biblioteca estática própria contendo:
 
-A Heap é representada como um **array**, mantendo relações clássicas:
+  * *Heap* + *Heap Sort*
+  * *Insertion Sort*
+* Geração de dados aleatórios
+* Execução dos dois algoritmos sobre o **mesmo conjunto de dados**
+* Medição de tempo com `clock_gettime` (*CLOCK_MONOTONIC*)
+* Comparação direta de desempenho
 
-```
-pai(i) = (i - 1) / 2
-esq(i) = 2*i + 1
-dir(i) = 2*i + 2
-```
+---
 
-### _Array_ para Insertion Sort
+## Estruturas utilizadas
 
-Um _array_ simples, alocado dinamicamente, usado para ordenar com Insertion Sort.
+* *Heap* para execução do *Heap Sort*
+* *Array* dinâmico para execução do *Insertion Sort*
+
+Os dois recebem exatamente os mesmos valores para manter a comparação justa.
 
 ---
 
 ## Algoritmos
 
-### HeapSort
+### *Heap Sort*
 
-```c
-void heapSort(Heap *heap);
-```
+* Baseado em *Max-Heap*
+* Ordenação *in-place*
+* Complexidade:
 
-1. Constrói a heap a partir do _array_
-2. Troca a raiz com o último elemento
-3. Reduz a parte ativa da heap
-4. Reorganiza com HeapifyDown
+  * Tempo: `O(n log n)`
+  * Espaço: `O(1)`
 
-Complexidade:
+---
 
-* Tempo: `O(n log n)`
-* Espaço: `O(1)`
+### *Insertion Sort*
 
-### Insertion Sort
+* Ordenação incremental
+* Simples, mas não escalável
+* Complexidade:
 
-```c
-void insertionSort(Array *array);
-```
-
-1. Percorre o _array_ a partir do segundo elemento
-2. Insere o elemento na posição correta dentro da parte já ordenada
-
-Complexidade:
-
-* Tempo: `O(n^2)`
-* Espaço: `O(1)`
+  * Tempo: `O(n^2)`
+  * Espaço: `O(1)`
 
 ---
 
 ## Medição de tempo
 
-Usei `clock_gettime` com `CLOCK_MONOTONIC` para obter medições confiáveis:
+Utilizei `clock_gettime` com `CLOCK_MONOTONIC`, garantindo medições confiáveis:
 
 ```c
 double executionTimeHeapSort = executionTimeCalculate(heapSortWrapper, arrayHeapSort);
@@ -93,11 +79,11 @@ double executionTimeInsertionSort = executionTimeCalculate(insertionSortWrapper,
 executionTimePrint(executionTimeInsertionSort);
 ```
 
-Exemplo de saída:
+Exemplo:
 
 ```
-HeapSort - Tempo de execução: 0 H : 0 M : 0 S : 12 ms
-InsertionSort - Tempo de execução: 0 H : 0 M : 3 S : 542 ms
+Heap Sort       - Tempo de execução: 0 H : 0 M : 0 S : 12 ms
+Insertion Sort  - Tempo de execução: 0 H : 0 M : 3 S : 542 ms
 ```
 
 ---
@@ -108,14 +94,13 @@ InsertionSort - Tempo de execução: 0 H : 0 M : 3 S : 542 ms
 Compare-Sorts/
 │
 ├── app/             # Aplicação principal (main)
-├── bin/             # Executáveis gerados
-├── include/         # Arquivos de cabeçalho (.h)
+├── bin/             # Executável
+├── include/         # Headers da biblioteca (.h)
+├── lib/             # Biblioteca estática (.a)
 │
-├── lib/             # Bibliotecas estáticas
-│
-├── Makefile         # Regras de compilação
-├── README.md        # Documentação do projeto
-└── LICENSE          # Licença do projeto
+├── Makefile         # Build e linkagem
+├── README.md        # Documentação
+└── LICENSE          # Licença
 ```
 
 ---
@@ -124,8 +109,6 @@ Compare-Sorts/
 >
 > ## Requisitos
 >
-> Para compilar e executar o projeto é necessário:
->
 > * **GCC ou Clang**
 > * **GNU Make**
 > * Sistema **Linux ou macOS**
@@ -133,8 +116,6 @@ Compare-Sorts/
 ---
 
 ## Instalação
-
-Clone o repositório:
 
 ```bash
 git clone git@github.com:natamleao/Compare-Sorts.git
@@ -159,7 +140,7 @@ make run
 
 ---
 
-## Limpeza do projeto
+## Limpeza
 
 ```bash
 make cleanapp
@@ -167,11 +148,22 @@ make cleanapp
 
 ---
 
+## Observação importante
+
+Executando ambos sobre o mesmo conjunto de dados, fica claro:
+
+* *Heap Sort* escala bem
+* *Insertion Sort* cresce rápido demais
+
+Esse projeto deixa evidente a diferença entre `O(n log n)` e `O(n^2)` no mundo real.
+
+---
+
 > [!WARNING]
 >
 > ## Licença
 >
-> Este projeto está licenciado sob a **Licença MIT**.
+> Este projeto está sob a **Licença MIT**.
 
 ---
 
