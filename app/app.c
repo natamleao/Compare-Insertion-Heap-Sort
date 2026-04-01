@@ -20,7 +20,7 @@ int main(){
         float max =  5000000000.0f;
         float value = min + ((float)rand() / RAND_MAX) * (max - min);
         structureArraySet(arrayInsertion, i, value);
-        heapSetValue(arrayHeap, i, value);
+        heapSet(arrayHeap, i, value);
     }
 
     double executionTimeHeapSort = executionTimeCalculate(heapSortWrapper, arrayHeap);
