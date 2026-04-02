@@ -11,7 +11,7 @@
 
 ## Visão geral
 
-Neste projeto, comparei os algoritmos ***Heap Sort*** e ***Insertion Sort*** utilizando uma **biblioteca estática única** que contém ambas as implementações.
+Eeste projeto compara os algoritmos ***Heap Sort*** e ***Insertion Sort*** utilizando uma **biblioteca estática única** que contém ambas as implementações.
 
 A ideia foi direta:
 
