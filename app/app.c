@@ -1,40 +1,55 @@
-#include "../include/execution_time.h"
-#include "../include/insertion_sort.h"
 #include "../include/heap.h"
 #include "../include/heap_sort.h"
+#include "../include/execution_time.h"
+#include "../include/array.h"
+#include "../include/insertion_sort.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <time.h> 
 
-#define SIZE 100000
+#define MAX_TESTS 7
 
-int main(){ 
+int main(){
 
-    Heap *arrayHeap = heapCreate( SIZE);
+    int tests[] = {10000, 20000, 50000, 100000, 200000, 500000, 1000000};
 
-    StructureArray *arrayInsertion = structureArrayCreate(SIZE);
+    printf("+------------------------------------------------------------------+\n");
+    printf("+------------------------ Testes iniciados ------------------------+\n");
 
-    srand(time(NULL));
-    for(int i = 0; i < SIZE; i++){
-        float min = -5000000000.0f;
-        float max =  5000000000.0f;
-        float value = min + ((float)rand() / RAND_MAX) * (max - min);
-        structureArraySet(arrayInsertion, i, value);
-        heapSet(arrayHeap, i, value);
+    for(int i = 0; i < MAX_TESTS; i++){
+        printf("+------------------------------------------------------------------+\n");
+        printf("Teste n.º: %d\n", i+1);
+        printf("+------------------------------------------------------------------+\n");
+        StructureArray *arrayInsertion = structureArrayCreate(tests[i]);
+        Heap *heap = heapCreate(tests[i]);
+
+        srand(time(NULL));
+        for(int j = 0; j < tests[i]; j++){
+            float min = -1e6f;
+            float max =  1e6f;
+            float value = min + ((float)rand() / RAND_MAX) * (max - min);
+            structureArraySet(arrayInsertion, j, value);
+            heapSet(heap, j, value);
+        }
+
+        double executionTimeInsertionSort = executionTimeCalculate(insertionSortWrapper, arrayInsertion);
+        printf("InsertionSort - ");
+        //structureArrayPrint(arrayInsertion);
+        executionTimePrint(executionTimeInsertionSort);
+        structureArrayDestroy(arrayInsertion);
+
+        printf("+------------------------------------------------------------------+\n");
+
+        double executionTimeHeapSort = executionTimeCalculate(heapSortWrapper, heap);
+        printf("HeapSort - ");
+        //structureArrayPrint(heap);
+        executionTimePrint(executionTimeHeapSort);
+        heapDestroy(heap);
     }
 
-    double executionTimeHeapSort = executionTimeCalculate(heapSortWrapper, arrayHeap);
-    printf("HeapSorte - ");
-    //printArray(arrayHeap);
-    executionTimePrint(executionTimeHeapSort);
-//
-    double executionTimeInsertionSort = executionTimeCalculate(insertionSortWrapper, arrayInsertion);
-    printf("InsertionSort - ");
-    //printArray(arrayInsertion);
-    executionTimePrint(executionTimeInsertionSort);
-
-    structureArrayDestroy(arrayInsertion);
-    heapDestroy(arrayHeap);
+    printf("+------------------------------------------------------------------+\n");
+    printf("+----------------------- Testes finalizados -----------------------+\n");
+    printf("+------------------------------------------------------------------+\n");
 
     return 0;
 }
