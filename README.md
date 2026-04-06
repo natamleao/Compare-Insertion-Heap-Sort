@@ -118,8 +118,8 @@ Compare-Sorts/
 ## Instalação
 
 ```bash
-git clone git@github.com:natamleao/Compare-Sorts.git
-cd Compare-Sorts
+git clone git@github.com:natamleao/Compare-Insertion-Heap-Sort.git
+cd Compare-Insertion-Heap-Sort
 ```
 
 ---
